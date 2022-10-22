@@ -11,7 +11,12 @@ config_version=4
 [application]
 
 config/name="Night Rush"
+run/main_scene="res://Scenes/SceneManager.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+SceneManager="*res://Scenes/SceneManager.tscn"
 
 [gui]
 

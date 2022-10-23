@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/calm.mp3-99ed815d9e5091e1f57303260f72962d.mp3str"
+
+[deps]
+
+source_file="res://Assets/calm.mp3"
+dest_files=[ "res://.import/calm.mp3-99ed815d9e5091e1f57303260f72962d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

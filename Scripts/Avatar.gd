@@ -5,6 +5,7 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
+onready var respawn_point = $RespawnPoint
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,6 +19,6 @@ func _ready():
 
 func _on_Area2D_body_entered(body):
 	if(body.name == "Player"):
-		body.position.x = 0
-		body.position.y = 0
+		body.position.x = respawn_point.position.x
+		body.position.y = respawn_point.position.y
 	pass

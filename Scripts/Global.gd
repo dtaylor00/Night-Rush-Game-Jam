@@ -12,12 +12,12 @@ func load_menu():
 	var resource := load(path)
 	scene_manager.transition_to(resource)
 	current_level = 1
-	MusicController.set_calm()
+	AudioController.set_calm()
 
 func load_level(level_name: String): 
 	goal_enabled = false
 	
-	if(level_name == "Level4"):
+	if(level_name == "Level6"):
 		load_menu()
 		return
 	
@@ -31,6 +31,7 @@ func get_level_timer():
 		2: return 121
 		3: return 61
 		4: return 301
+		5: return 301
 		_: return 61
 	
 

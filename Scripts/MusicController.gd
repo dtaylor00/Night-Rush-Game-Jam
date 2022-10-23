@@ -5,7 +5,7 @@ var calm = "res://Assets/calm.mp3"
 var danger = "res://Assets/danger.mp3"
 
 onready var music_player = $Music
-
+onready var sfx_player = $Sfx
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,6 +24,8 @@ func set_music(path):
 			music_player.play()
 			current = path
 			
+func play_respawn():
+	sfx_player.play()
 
 func set_danger():
 	set_music(danger)

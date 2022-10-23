@@ -21,6 +21,7 @@ func _on_Area2D_body_entered(body):
 	if(body.name == "Player"):
 		body.position.x = respawn_point.position.x
 		body.position.y = respawn_point.position.y
+		AudioController.play_respawn()
 	pass
 
 

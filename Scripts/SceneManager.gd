@@ -11,14 +11,6 @@ func _ready():
 	print("scene man ready")
 	pass
 
-
-func _process(delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		if(Global.get_scene_name() == "Level1"):
-			Global.load_level("Level2")
-		else:
-			Global.load_level("Level1")
-
 func transition_to(resource):
 	if(resource):
 		next_scene = resource.instance()

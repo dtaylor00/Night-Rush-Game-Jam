@@ -8,7 +8,6 @@ var next_scene_name = ""
 
 func _ready():
 	Global.scene_manager = self
-	print("scene man ready")
 	pass
 
 func transition_to(resource):
@@ -26,3 +25,5 @@ func _on_TransitionScene_transitioned():
 	current_scene_name = next_scene_name
 	next_scene = null
 	next_scene_name = ""
+	Global.goal_enabled = false
+	Global.is_dead = false

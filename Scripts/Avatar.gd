@@ -22,3 +22,9 @@ func _on_Area2D_body_entered(body):
 		body.position.x = respawn_point.position.x
 		body.position.y = respawn_point.position.y
 	pass
+
+
+
+
+func _on_Countdown_timeout():
+	pass # Replace with function body.

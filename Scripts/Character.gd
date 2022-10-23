@@ -4,9 +4,18 @@ onready var right_move_sprites = $RightSprites
 onready var left_move_sprites = $LeftSprites
 onready var right_jump_sprites = $JumpRight
 onready var left_jump_sprites = $JumpLeft
+onready var death_sprites = $Death
 onready var current_sprites = right_move_sprites
 
+func _process(delta):
+	if(Global.is_dead):
+		if(current_sprites != death_sprites):
+			set_current_sprites(death_sprites)
+			current_sprites.get_node("AnimationPlayer").current_animation = "death"
+
 func _physics_process(_delta: float) -> void:
+	if(Global.is_dead): return
+	
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
 	var direction: = get_direction()
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
@@ -71,3 +80,9 @@ func calculate_move_velocity(
 			current_sprites.get_node("AnimationPlayer").current_animation = "run"
 		
 	return output
+
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	current_sprites.visible = false
+	Global.load_menu()

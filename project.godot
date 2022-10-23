@@ -24,6 +24,10 @@ config/name="Night Rush"
 run/main_scene="res://Scenes/SceneManager.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Scripts/Global.gd"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

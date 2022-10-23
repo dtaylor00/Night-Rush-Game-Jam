@@ -1,18 +1,18 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Kid_run.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Kid_run.png" type="Texture" id=1]
 [ext_resource path="res://Source/Character.gd" type="Script" id=2]
-[ext_resource path="res://Fall.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Fall.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 0.667286, 0.326897 )
 
 [sub_resource type="Animation" id=6]
-resource_name = "idle_right"
+resource_name = "idle"
 length = 0.05
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Right Sprites:frame")
+tracks/0/path = NodePath("RightSprites:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -25,28 +25,28 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=7]
-resource_name = "run_right"
+resource_name = "run"
 length = 0.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Right Sprites:frame")
+tracks/0/path = NodePath("RightSprites:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"times": PoolRealArray( 0, 0.15, 0.3, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 2, 3, 4, 5 ]
 }
 
 [sub_resource type="Animation" id=8]
-resource_name = "idle_left"
+resource_name = "idle"
 length = 0.05
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Left Sprites:frame")
+tracks/0/path = NodePath("LeftSprites:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -59,11 +59,11 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=9]
-resource_name = "run_left"
+resource_name = "run"
 length = 0.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Left Sprites:frame")
+tracks/0/path = NodePath("LeftSprites:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -76,7 +76,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=10]
-resource_name = "jump_left"
+resource_name = "jump"
 length = 0.05
 loop = true
 tracks/0/type = "value"
@@ -93,7 +93,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=11]
-resource_name = "jump_right"
+resource_name = "jump"
 length = 0.05
 loop = true
 tracks/0/type = "value"
@@ -111,50 +111,54 @@ tracks/0/keys = {
 
 [node name="Avatar" type="Node2D"]
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+[node name="Player" type="KinematicBody2D" parent="."]
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2( -1, -0.5 )
 scale = Vector2( 10.4903, -47.4156 )
 shape = SubResource( 5 )
 
-[node name="Right Sprites" type="Sprite" parent="KinematicBody2D"]
+[node name="RightSprites" type="Sprite" parent="Player"]
 texture = ExtResource( 1 )
 hframes = 2
 vframes = 3
-frame = 3
+frame = 2
 
-[node name="Idle Right" type="AnimationPlayer" parent="KinematicBody2D/Right Sprites"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/RightSprites"]
 root_node = NodePath("../..")
-anims/idle_right = SubResource( 6 )
-anims/run_right = SubResource( 7 )
+anims/idle = SubResource( 6 )
+anims/run = SubResource( 7 )
 
-[node name="Left Sprites" type="Sprite" parent="KinematicBody2D"]
+[node name="LeftSprites" type="Sprite" parent="Player"]
 visible = false
 position = Vector2( -2, 0 )
 texture = ExtResource( 1 )
 flip_h = true
 hframes = 2
 vframes = 3
-frame = 4
+frame = 2
 
-[node name="Idle Left" type="AnimationPlayer" parent="KinematicBody2D/Left Sprites"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/LeftSprites"]
 root_node = NodePath("../..")
-anims/idle_left = SubResource( 8 )
-anims/run_left = SubResource( 9 )
+anims/idle = SubResource( 8 )
+anims/run = SubResource( 9 )
 
-[node name="Jump Left" type="Sprite" parent="KinematicBody2D"]
+[node name="JumpLeft" type="Sprite" parent="Player"]
 visible = false
 texture = ExtResource( 3 )
 flip_h = true
 
-[node name="Jump Left" type="AnimationPlayer" parent="KinematicBody2D/Jump Left"]
-anims/jump_left = SubResource( 10 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/JumpLeft"]
+anims/jump = SubResource( 10 )
 
-[node name="Jump Right" type="Sprite" parent="KinematicBody2D"]
+[node name="JumpRight" type="Sprite" parent="Player"]
 visible = false
 texture = ExtResource( 3 )
 
-[node name="Jump Right" type="AnimationPlayer" parent="KinematicBody2D/Jump Right"]
-anims/jump_right = SubResource( 11 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/JumpRight"]
+anims/jump = SubResource( 11 )
